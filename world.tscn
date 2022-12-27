@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwe4wujf1vpka"]
+
+[ext_resource type="PackedScene" uid="uid://e2lhg4hccowv" path="res://player.tscn" id="1_2i063"]
+[ext_resource type="PackedScene" uid="uid://dewpim8n6h63t" path="res://tree_spawner.tscn" id="2_ahk1q"]
+[ext_resource type="PackedScene" uid="uid://deo805nljeip6" path="res://tree.tscn" id="3_chqm6"]
+
+[sub_resource type="Gradient" id="Gradient_7nmhy"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kinp2"]
+gradient = SubResource("Gradient_7nmhy")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufmf1"]
+size = Vector2(20, 730)
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 326.5)
+scale = Vector2(18.375, 10.5469)
+texture = SubResource("GradientTexture2D_kinp2")
+
+[node name="Player" parent="." instance=ExtResource("1_2i063")]
+position = Vector2(512, 457)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(163, 537, 634, 524, 866, 535, 1159, 531, 1161, 654, -43, 658, -23, 506)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+polygon = PackedVector2Array(-11, 520, 170, 545, 628, 529, 882, 546, 1157, 537, 1156, 651, -17, 655)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0, 321.5)
+shape = SubResource("RectangleShape2D_ufmf1")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(1152, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0, 297)
+shape = SubResource("RectangleShape2D_ufmf1")
+
+[node name="TreeSpawner" parent="." instance=ExtResource("2_ahk1q")]
+position = Vector2(538, -27)
+
+[node name="Tree" parent="." instance=ExtResource("3_chqm6")]
+position = Vector2(404, 382)
