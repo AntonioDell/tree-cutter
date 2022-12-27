@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node2D",
+"class": &"BranchPoint",
+"language": &"GDScript",
+"path": "res://branch_point.gd"
+}]
+_global_script_class_icons={
+"BranchPoint": ""
+}
+
 [application]
 
 config/name="Tree Cutter"

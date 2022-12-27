@@ -13,6 +13,7 @@ autostart = true
 position = Vector2(697, 397)
 points = PackedVector2Array(0, 0, 0, -32)
 
-[node name="BranchPoints" type="Node2D" parent="."]
+[node name="Branches" type="Node2D" parent="."]
+position = Vector2(697, 397)
 
 [connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]
