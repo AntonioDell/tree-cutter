@@ -24,5 +24,15 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	if velocity.x > 0:
+		rotation_degrees = 0
+	elif velocity.x < 0:
+		rotation_degrees = 180
 	move_and_slide()
+
+
+func _on_cut_cut_finished():
+	pass
+
+func _on_cut_cut_started():
+	pass

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://e2lhg4hccowv"]
+[gd_scene load_steps=6 format=3 uid="uid://e2lhg4hccowv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_33rah"]
+[ext_resource type="PackedScene" uid="uid://vrgh63u55o3u" path="res://cut.tscn" id="2_jfux5"]
 
 [sub_resource type="Gradient" id="Gradient_rm3rp"]
 offsets = PackedFloat32Array(1)
@@ -22,3 +23,8 @@ texture = SubResource("GradientTexture2D_3t1jk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ph4qk")
+
+[node name="Cut" parent="." instance=ExtResource("2_jfux5")]
+
+[connection signal="cut_finished" from="Cut" to="." method="_on_cut_cut_finished"]
+[connection signal="cut_started" from="Cut" to="." method="_on_cut_cut_started"]

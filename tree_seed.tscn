@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dewpim8n6h63t"]
+[gd_scene load_steps=5 format=3 uid="uid://7q4gia4ot4xi"]
 
-[ext_resource type="Script" path="res://tree_spawner.gd" id="1_1l1li"]
+[ext_resource type="Script" path="res://tree_seed.gd" id="1_eeisg"]
 
 [sub_resource type="Gradient" id="Gradient_5xkhe"]
 offsets = PackedFloat32Array(1)
@@ -14,11 +14,11 @@ height = 8
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xsug"]
 size = Vector2(8, 8)
 
-[node name="TreeSpawner" type="AnimatableBody2D"]
+[node name="TreeSeed" type="AnimatableBody2D"]
 collision_layer = 0
 collision_mask = 2
 sync_to_physics = false
-script = ExtResource("1_1l1li")
+script = ExtResource("1_eeisg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_0intp")

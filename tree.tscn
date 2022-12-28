@@ -1,19 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://deo805nljeip6"]
+[gd_scene load_steps=4 format=3 uid="uid://deo805nljeip6"]
 
 [ext_resource type="Script" path="res://tree.gd" id="1_7a8dp"]
 
-[node name="Tree" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m7es"]
+resource_local_to_scene = true
+size = Vector2(20, 32)
+
+[sub_resource type="Curve" id="Curve_pb0te"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.145455), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Tree" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_7a8dp")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_0m7es")
+
 [node name="GrowTimer" type="Timer" parent="."]
-wait_time = 0.1
 autostart = true
 
 [node name="Trunk" type="Line2D" parent="."]
-position = Vector2(697, 397)
 points = PackedVector2Array(0, 0, 0, -32)
+width_curve = SubResource("Curve_pb0te")
 
 [node name="Branches" type="Node2D" parent="."]
-position = Vector2(697, 397)
 
 [connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]

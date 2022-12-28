@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwe4wujf1vpka"]
+[gd_scene load_steps=6 format=3 uid="uid://cwe4wujf1vpka"]
 
 [ext_resource type="PackedScene" uid="uid://e2lhg4hccowv" path="res://player.tscn" id="1_2i063"]
-[ext_resource type="PackedScene" uid="uid://dewpim8n6h63t" path="res://tree_spawner.tscn" id="2_ahk1q"]
-[ext_resource type="PackedScene" uid="uid://deo805nljeip6" path="res://tree.tscn" id="3_chqm6"]
+[ext_resource type="PackedScene" uid="uid://dwubl3q5rsyoj" path="res://tree_seed_spawner.tscn" id="2_8irfj"]
 
 [sub_resource type="Gradient" id="Gradient_7nmhy"]
 offsets = PackedFloat32Array(0)
@@ -46,8 +45,15 @@ position = Vector2(1152, 0)
 position = Vector2(0, 297)
 shape = SubResource("RectangleShape2D_ufmf1")
 
-[node name="TreeSpawner" parent="." instance=ExtResource("2_ahk1q")]
-position = Vector2(538, -27)
+[node name="TreeSeedSpawner" parent="." instance=ExtResource("2_8irfj")]
 
-[node name="Tree" parent="." instance=ExtResource("3_chqm6")]
-position = Vector2(404, 382)
+[node name="Boundary1" parent="TreeSeedSpawner" index="0"]
+position = Vector2(146, -9)
+
+[node name="Boundary2" parent="TreeSeedSpawner" index="1"]
+position = Vector2(998, -15)
+
+[node name="SpawnTimer" parent="TreeSeedSpawner" index="2"]
+wait_time = 10.0
+
+[editable path="TreeSeedSpawner"]

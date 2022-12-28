@@ -5,11 +5,13 @@ const MAX_ROTATION_DEGREES := 45.0
 const MAX_BRANCHES := 3
 
 @export var grow_direction := Vector2.ZERO
-@export var max_length := 0
+@export var max_length := 0.0
 
 var can_grow := true
 
 var _branches_count := 0
+var _branch_point_scene := preload("res://branch_point.tscn")
+
 
 func _ready():
 	if grow_direction == Vector2.ZERO:
@@ -24,12 +26,15 @@ func grow() -> BranchPoint:
 	var branch_end := direction * length
 	
 	var branch_line = Line2D.new()
+	branch_line.width = 2
 	branch_line.add_point(Vector2.ZERO)
 	branch_line.add_point(branch_end)
 	add_child(branch_line)
 	
-	var new_branch_point = BranchPoint.new()
+	var new_branch_point = _branch_point_scene.instantiate()
 	new_branch_point.position = branch_end
+	new_branch_point.grow_direction = direction
+	new_branch_point.max_length = length
 	add_child(new_branch_point)
 	
 	_branches_count += 1
@@ -47,5 +52,6 @@ func _get_grow_direction() -> Vector2:
 
 
 func _get_grow_length() -> float:
-	var deviation := randf_range(.75, 1)
-	return deviation * max_length
+	#var deviation := randf_range(.75, 1)
+	#return deviation * max_length
+	return max_length
