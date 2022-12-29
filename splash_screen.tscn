@@ -1,26 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8xde5a4kcj33"]
+[gd_scene load_steps=6 format=3 uid="uid://b8xde5a4kcj33"]
 
-[sub_resource type="Animation" id="Animation_ra8kv"]
-resource_name = "zoom_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2, -2),
-"update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
-}
+[ext_resource type="Script" path="res://splash_screen.gd" id="1_h723t"]
+[ext_resource type="Theme" uid="uid://b68m26lpaiqmj" path="res://main_theme.tres" id="1_qk4wo"]
 
 [sub_resource type="Animation" id="Animation_uyli8"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer:scale")
+tracks/0/path = NodePath("CenterContainer/VBoxContainer:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,33 +18,70 @@ tracks/0/keys = {
 "values": [Vector2(0.1, 0.1)]
 }
 
+[sub_resource type="Animation" id="Animation_ra8kv"]
+resource_name = "zoom_in"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.7, 4),
+"transitions": PackedFloat32Array(2, -2, -2),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/VBoxContainer/MarginContainer/Start:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 4.1, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.988235, 0.988235, 0.988235, 0), Color(0.988235, 0.988235, 0.988235, 0), Color(0.988235, 0.988235, 0.988235, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_geq26"]
 _data = {
 "RESET": SubResource("Animation_uyli8"),
 "zoom_in": SubResource("Animation_ra8kv")
 }
 
-[node name="SplashScreen" type="Control"]
-layout_mode = 3
+[node name="SplashScreen" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_qk4wo")
+script = ExtResource("1_h723t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(562, 324)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 offset_left = 412.0
-offset_top = 262.0
+offset_top = 210.0
 offset_right = 712.0
-offset_bottom = 385.0
+offset_bottom = 437.0
 scale = Vector2(0.1, 0.1)
-pivot_offset = Vector2(154, 66)
 
-[node name="Title" type="RichTextLabel" parent="VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
+offset_right = 300.0
+offset_bottom = 74.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 54
@@ -64,16 +89,40 @@ bbcode_enabled = true
 text = "[shake rate=10 level=20]Tree Cutter[/shake]"
 fit_content_height = true
 
-[node name="Subtitle" type="RichTextLabel" parent="VBoxContainer"]
+[node name="Subtitle" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
+offset_left = 90.0
+offset_top = 78.0
+offset_right = 210.0
+offset_bottom = 123.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 32
 text = "Origins"
 fit_content_height = true
 
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+offset_left = 100.0
+offset_top = 127.0
+offset_right = 200.0
+offset_bottom = 227.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer"]
+modulate = Color(0.988235, 0.988235, 0.988235, 0)
+offset_top = 38.0
+offset_right = 100.0
+offset_bottom = 61.0
+size_flags_vertical = 4
+theme = ExtResource("1_qk4wo")
+text = "Start"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "zoom_in"
 libraries = {
 "": SubResource("AnimationLibrary_geq26")
 }
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/Start" to="." method="_on_start_pressed"]

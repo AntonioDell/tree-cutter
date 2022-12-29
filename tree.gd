@@ -22,6 +22,7 @@ var _next_branch_point_direction = Vector2(-0.5, -1)
 func cut():
 	hit_points -= 1
 	if hit_points == 0:
+		GlobalScore.increase_score(score_increase)
 		queue_free()
 
 
@@ -32,7 +33,6 @@ func _ready():
 func _grow():
 	_height += 1
 	hit_points += 1 if hit_points < max_hit_points else 0
-	score_increase += 1
 	
 	_grow_trunk()
 	_add_branch_point()

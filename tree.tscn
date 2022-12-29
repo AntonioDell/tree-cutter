@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://tree.gd" id="1_7a8dp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m7es"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p56iu"]
 resource_local_to_scene = true
 size = Vector2(20, 32)
 
-[sub_resource type="Curve" id="Curve_pb0te"]
+[sub_resource type="Curve" id="Curve_xvjra"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.145455), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -17,14 +17,14 @@ script = ExtResource("1_7a8dp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_0m7es")
+shape = SubResource("RectangleShape2D_p56iu")
 
 [node name="GrowTimer" type="Timer" parent="."]
 autostart = true
 
 [node name="Trunk" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, -32)
-width_curve = SubResource("Curve_pb0te")
+width_curve = SubResource("Curve_xvjra")
 
 [node name="Branches" type="Node2D" parent="."]
 

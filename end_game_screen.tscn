@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bycqhuwjh6cpc"]
+
+[ext_resource type="Theme" uid="uid://b68m26lpaiqmj" path="res://main_theme.tres" id="1_2ekbo"]
+[ext_resource type="Script" path="res://end_game_screen.gd" id="2_66jep"]
+
+[node name="EndGameScreen" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2ekbo")
+script = ExtResource("2_66jep")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WinText1" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(530, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 54
+bbcode_enabled = true
+text = "You [shake]ARE[/shake] tree cutter!"
+fit_content_height = true
+
+[node name="ScoreText" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 54
+bbcode_enabled = true
+text = "Score: $amount"
+fit_content_height = true
